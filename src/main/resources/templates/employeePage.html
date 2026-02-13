@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Devices</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Devices list</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>State</th>
+        <th>Origin</th>
+        <th>IsCalibrated</th>
+        <th>IsConnected</th>
+        <th>Price</th>
+        <th>show configuration</th>
+        <th>edit configuration</th>
+        <th>delete device</th>
+    </tr>
+    </thead>
+    <tbody>
+   <tr th:each="device: ${devices}">
+        <td th:text="${device.id}"> <b>10 </b></td>
+        <td th:text="${device.state}"> On </td>
+        <td th:text="${device.origin}"> Reused </td>
+        <td th:switch="${device.isCalibrated}">
+            <span th:case="true">Yes</span>
+            <a th:case="false" href="device/calibrate?id=10" th:href="@{/device/calibrate/{id}(id=${device.id})}">Calibrate</a>
+        </td>
+        <td th:text="${device.isConnected} ? 'Yes':'No'"> ? </td>
+        <td th:text="${device.price}"> 100£ </td>
+        <td> <a href="device/configDevice?id=1" th:href="@{/device/configDevice/{id}(id=${device.id})}" > show </a></td>
+        <td> <a href="device/editConfigDevice?id=10" th:href="@{/device/editConfigDevice/{id}(id=${device.id})}"> edit </a></td>
+        <td> <a href="device/decommission?id=10" th:href="@{/device/decommission/{id}(id=${device.id})}"> delete </a></td>
+        <td><button>Ping Cloud</button></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

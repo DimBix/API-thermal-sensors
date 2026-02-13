@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Configuration</title>
+    <style>
+        .btn-send {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+        .btn-send:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Configuration Management<span th:text="${device.id}">0</span></h1>
+    <a th:href="@{/employeePage}">Back to list</a>
+    <hr>
+</header>
+
+<div th:if="${message}" style="color: green; font-weight: bold; margin-bottom: 10px;">
+    <p th:text="${message}"></p>
+</div>
+
+<section>
+    <h2>Currently Connected Sensors</h2>
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        <thead>
+        <tr bgcolor="#eeeeee">
+            <th>Sensor ID</th>
+            <th>Parameter Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sensor : ${sensors}" th:if="${!pendingRemovals.contains(sensor.id)}">
+            <td th:text="${sensor.id}">0</td>
+            <td th:text="${sensor.parametersTypes}">Parameter</td>
+            <td>
+                <form th:action="@{/device/removeSensor}" method="post">
+                    <input type="hidden" name="deviceId" th:value="${device.id}" />
+                    <input type="hidden" name="sensorId" th:value="${sensor.id}" />
+                    <button type="submit" onclick="return confirm('Remove this sensor?')">❌ Remove</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(sensors)}">
+            <td colspan="3" align="center">No sensors connected to this device.</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<form th:action="@{/device/sendConfigDevice}" method="post">
+    <input type="hidden" name="deviceId" th:value="${device.id}" />
+    <button type="submit" class="btn-send" id="sendButton" onclick="return confirm('Send configuration to the device?')">📡 Send Configuration to Device</button>
+</form>
+
+</body>
+</html>

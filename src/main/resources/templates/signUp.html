@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sign Up</title></head>
+<body>
+    <h1>Sign Up</h1>
+    <!-- TODO: Scegliere un endpoint appropriato -->
+    <form action="TBD" method="post">
+        <h3>Credentials</h3>
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" /> <br>
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" /> <br>
+        <label for="repeat-password">Repeat Password: </label>
+        <input type="password" name="repeat-password" id="repeat-password" /> <br>
+        <label for="firstname">First name: </label>
+        <input type="text" name="firstname" id="firstname" /> <br>
+        <label for="lastname">Last name: </label>
+        <input type="text" name="lastname" id="lastname" /> <br>
+        <label for="gender">Gender: </label>
+        <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <h3>Contact Info</h3>
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" /> <br>
+        <label for="address">Address: </label>
+        <input type="text" name="address" id="address" /> <br>
+        <label for="telephoneNumber">Telephone number: </label>
+        <input type="tel" name="telephoneNumber" id="telephoneNumber" /> <br>
+        <label for="city">City: </label>
+        <input type="text" name="city" id="city" /> <br>
+        <label for="taxIdentificationNumber">Tax ID number: </label>
+        <input type="number" name="taxIdentificationNumber" id="taxIdentificationNumber" /> <br>
+        <input type="submit">
+    </form>
+</body>
+</html>

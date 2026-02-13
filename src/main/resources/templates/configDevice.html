@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Configuration</title>
+</head>
+<body>
+
+<header>
+    <h1>Configuration Panel</h1>
+    <a th:href="@{/employeePage}">Back to list</a>
+    <hr>
+</header>
+
+<section>
+    <h2>General Information</h2>
+    <ul>
+        <li><strong>Device ID:</strong> <span th:text="${device.id}">N/A</span></li>
+        <li><strong>Operating Status:</strong> <span th:text="${device.state} ? 'ACTIVE' : 'INACTIVE'">OFF</span></li>
+        <li><strong>Hardware Cost:</strong> €<span th:text="${device.price}">0.00</span></li>
+    </ul>
+</section>
+
+<p th:switch="${device.isCalibrated}">
+    <span th:case="true">Yes</span>
+    <a th:case="false" href="device/calibrate?id=10" th:href="@{/device/calibrate/{id}(id=${device.id})}">Calibrate</a>
+</p>
+
+<section>
+    <h2>Connected Sensors</h2>
+    <p>Continuous monitoring of physical transport conditions.</p>
+
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+        <tr bgcolor="#eeeeee">
+            <th>Sensor ID</th>
+            <th>Parameter Type</th>
+            <th>Calibrated</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sensor : ${sensors}">
+            <td th:text="${sensor.id}">0</td>
+            <td th:text="${sensor.parametersTypes}">Parameter</td>
+            <td th:align="center">
+                <b th:text="${sensor.isCalibrated} ? '✅ YES' : '❌ NO'">NO</b>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer>
+    <hr>
+    <p><small>Logistics Traceability System - Cloud Monitoring</small></p>
+</footer>
+
+</body>
+</html>

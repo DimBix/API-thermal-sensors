@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Inventory</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        h2 { color: #333; border-bottom: 2px solid #333; }
+    </style>
+</head>
+<body>
+<h1>Manager Page</h1>
+<p>Logged in as: <span th:text="${user.getFirstname()}">Username</span></p>
+
+<hr/>
+
+<h2>Devices Inventory</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Origin</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="device : ${devices}">
+        <td th:text="${device.id}">1</td>
+        <td th:text="${device.origin}">New</td>
+        <td th:text="${device.price}">10</td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(devices)}">
+        <td colspan="3">No devices found.</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Sensors Inventory</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sensor : ${sensors}">
+        <td th:text="${sensor.id}">1</td>
+        <td th:text="${sensor.parametersTypes}">Temperature</td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(sensors)}">
+        <td colspan="3">No sensors found.</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
