@@ -1,9 +1,9 @@
 # Progetto del corso di Progettazione e Validazione del Software
 ## Gestione Devices
 
-**Rigon Andrea** – VR532858  
-**Binosi Dimitri** – VR538885  
-**Marco Da Pozzo** - VR544104
+**Andrea**  
+**Dimitri**  
+**Marco**
 
 ---
 
